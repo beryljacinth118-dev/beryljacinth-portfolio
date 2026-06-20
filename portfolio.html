@@ -1,0 +1,974 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#070a14" />
+  <meta name="color-scheme" content="dark" />
+  <title>Beryl Jacinth.S — Portfolio</title>
+  <meta name="description" content="Portfolio of Beryl Jacinth.S — React.js & Java developer. Live project: dmibus.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --bg0:#070a14;
+      --bg1:#0b1020;
+      --card: rgba(255,255,255,.055);
+      --stroke: rgba(255,255,255,.11);
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,.74);
+      --muted2: rgba(234,240,255,.55);
+      --brand:#66a6ff;
+      --brand2:#89f7fe;
+      --good:#34d399;
+      --shadow: 0 14px 46px rgba(0,0,0,.28);
+      --radius: 18px;
+      --radius2: 22px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg0);}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background-color: var(--bg0);
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(102,166,255,.18), transparent 60%),
+        radial-gradient(760px 540px at 88% 22%, rgba(137,247,254,.12), transparent 62%),
+        radial-gradient(680px 520px at 55% 95%, rgba(99,102,241,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      overscroll-behavior:none;
+      -webkit-text-size-adjust:100%;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .section{
+      padding: 82px 0;
+      content-visibility:auto;
+      contain-intrinsic-size: 1px 900px;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: clamp(22px, 3.4vw, 34px);
+      letter-spacing:-.02em;
+    }
+    .section p.lead{
+      margin:0 0 26px;
+      color: var(--muted);
+      max-width:72ch;
+      line-height:1.7;
+    }
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(180deg, rgba(11,16,32,.86), rgba(11,16,32,.56));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    @supports (backdrop-filter: blur(12px)){
+      .topbar{backdrop-filter: blur(12px);}
+    }
+    .nav{
+      height:64px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;min-width:190px;
+    }
+    .logo{
+      width:36px;height:36px;border-radius:12px;flex:0 0 auto;
+      background: linear-gradient(135deg, rgba(102,166,255,.95), rgba(137,247,254,.65));
+      box-shadow: 0 10px 28px rgba(102,166,255,.14);
+      position:relative;overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-60%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+      transform: rotate(30deg);
+      animation: shine 7s infinite;
+      opacity:.68;
+    }
+    @keyframes shine{
+      0%{transform:translateX(-40%) rotate(30deg)}
+      100%{transform:translateX(40%) rotate(30deg)}
+    }
+    .brand b{font-weight:800;letter-spacing:-.02em}
+    .brand small{display:block;color:var(--muted2);font-weight:700;margin-top:1px}
+
+    .navlinks{display:flex;align-items:center;gap:12px;}
+    .navlinks a{
+      color:var(--muted);
+      font-weight:800;
+      padding:9px 10px;
+      border-radius:12px;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+    .navlinks a.active{
+      background: rgba(102,166,255,.12);
+      border: 1px solid rgba(102,166,255,.20);
+      color: var(--text);
+    }
+
+    .nav-cta{display:flex;align-items:center;gap:10px;}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight:900;
+      box-shadow: 0 10px 26px rgba(0,0,0,.16);
+      transition: transform .15s ease, background .15s ease;
+      cursor:pointer; user-select:none; white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-2px); background: rgba(255,255,255,.085)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(102,166,255,.95), rgba(137,247,254,.55));
+      border: 1px solid rgba(137,247,254,.30);
+      color:#061022;
+    }
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(102,166,255,1), rgba(137,247,254,.68))}
+    .btn.ghost{
+      background: transparent;
+      border: 1px solid rgba(102,166,255,.25);
+      box-shadow:none;
+    }
+
+    .hamburger{
+      display:none;
+      width:42px;height:42px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+    }
+    .mobile-panel{
+      padding: 10px 0 16px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .mobile-panel a{
+      display:block;padding:12px 10px;border-radius:14px;
+      color:var(--muted);font-weight:900;
+    }
+    .mobile-panel a:hover{background: rgba(255,255,255,.06);color:var(--text);}
+    .mobile-panel[hidden]{display:none}
+
+    /* Hero */
+    .hero{padding:66px 0 26px; position:relative;}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size: clamp(28px, 4.8vw, 52px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+    .hero .subtitle{
+      color:var(--muted);
+      line-height:1.7;
+      margin:0 0 16px;
+      max-width:72ch;
+    }
+    .badges{
+      display:flex;flex-wrap:wrap;gap:10px;
+      margin:12px 0 16px;
+    }
+    .badge{
+      padding:8px 10px;border-radius:999px;
+      background: rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+
+    /* Cards / grid */
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    @supports (backdrop-filter: blur(14px)){
+      .card{backdrop-filter: blur(14px);}
+    }
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+    .span-8{grid-column:span 8}
+    .span-12{grid-column:span 12}
+
+    .hero-card{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height:250px;
+    }
+    @supports (backdrop-filter: blur(14px)){
+      .hero-card{backdrop-filter: blur(14px);}
+    }
+    .hero-card .top{
+      padding:14px 14px 10px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .pill{
+      font-size:12px;
+      color: rgba(6,16,34,.92);
+      font-weight:950;
+      padding:7px 10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, rgba(102,166,255,1), rgba(137,247,254,.78));
+    }
+    .status{
+      display:flex;align-items:center;gap:8px;
+      color: var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(52,211,153,.12);
+    }
+    .hero-card .body{padding:14px;}
+
+    .profile{
+      display:flex;align-items:center;gap:12px;
+      padding:12px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    .avatar{
+      width:72px;height:72px;border-radius:50%;
+      object-fit:cover;
+      border:2px solid rgba(102,166,255,.50);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      flex:0 0 auto;
+    }
+    .pname{font-weight:950;letter-spacing:-.02em}
+    .prole{display:block;margin-top:2px;color:var(--muted2);font-weight:900;font-size:12.5px}
+
+    .metric{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .metric .box{
+      padding:12px;border-radius:16px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .metric b{display:block;font-size:19px;letter-spacing:-.02em}
+    .metric small{color:var(--muted);font-weight:900}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .chip{
+      font-size:12px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight:900;
+    }
+
+    /* Projects */
+    .project{position:relative;overflow:hidden;}
+    .project::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(560px 200px at 25% 0%, rgba(102,166,255,.18), transparent 55%),
+                  radial-gradient(420px 200px at 92% 20%, rgba(137,247,254,.12), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .project > *{position:relative}
+    .project .row{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+      margin-bottom:10px;
+    }
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:950;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.86);
+    }
+    .tag i{color: rgba(102,166,255,.95)}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .link{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:14px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-weight:950;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .link:hover{transform: translateY(-2px); background: rgba(255,255,255,.085); color: var(--text)}
+    .link i{color: rgba(137,247,254,.9)}
+    .link.disabled{opacity:.55;pointer-events:none;}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:18px;}
+    .timeline::before{
+      content:"";
+      position:absolute;top:0;bottom:0;left:7px;
+      width:2px;background: rgba(255,255,255,.12);
+    }
+    .titem{
+      position:relative;
+      margin:14px 0;
+      padding:14px 14px 14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+    }
+    .titem::before{
+      content:"";
+      position:absolute;left:-18px;top:18px;
+      width:14px;height:14px;border-radius:50%;
+      background: rgba(102,166,255,.9);
+      box-shadow: 0 0 0 6px rgba(102,166,255,.12);
+    }
+    .titem b{display:block;margin-bottom:4px}
+    .titem small{color:var(--muted2);font-weight:900}
+    .titem p{margin:10px 0 0;color:var(--muted);line-height:1.7}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+    label{color:var(--muted2);font-weight:900;font-size:13px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(8,12,24,.55);
+      color:var(--text);
+      outline:none;
+      transition: border .15s ease, box-shadow .15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(102,166,255,.45);
+      box-shadow: 0 0 0 6px rgba(102,166,255,.10);
+    }
+    textarea{min-height:120px;resize:vertical}
+    .hint{color:var(--muted2);font-weight:800;font-size:13px}
+
+    .footer{
+      padding:26px 0 34px;
+      color:var(--muted2);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+      will-change: transform, opacity;
+    }
+    .reveal.visible{opacity:1;transform: translateY(0);}
+
+    /* Icon premium jump + original social colors */
+    .hero-actions .btn,
+    .links .link{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-actions .btn::before,
+    .links .link::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at top, rgba(255,255,255,.16), transparent 55%);
+      opacity:0;
+      transition: opacity .2s ease;
+      pointer-events:none;
+    }
+
+    .hero-actions .btn:hover::before,
+    .links .link:hover::before{
+      opacity:1;
+    }
+
+    .hero-actions .btn i,
+    .links .link i{
+      font-size:17px;
+      transition: transform .22s ease, filter .22s ease;
+      transform-origin:center;
+    }
+
+    @keyframes iconJump{
+      0%,100%{
+        transform:translateY(0) scale(1);
+      }
+      25%{
+        transform:translateY(-5px) scale(1.06) rotate(-3deg);
+      }
+      50%{
+        transform:translateY(0) scale(1);
+      }
+      75%{
+        transform:translateY(-3px) scale(1.04) rotate(3deg);
+      }
+    }
+
+    .hero-actions .btn i,
+    .links .link i{
+      animation:iconJump 2.1s ease-in-out infinite;
+    }
+
+    .hero-actions .btn:nth-child(1) i{animation-delay:0s}
+    .hero-actions .btn:nth-child(2) i{animation-delay:.15s}
+    .hero-actions .btn:nth-child(3) i{animation-delay:.30s}
+    .hero-actions .btn:nth-child(4) i{animation-delay:.45s}
+    .hero-actions .btn:nth-child(5) i{animation-delay:.60s}
+
+    .links .link:nth-child(1) i{animation-delay:.10s}
+    .links .link:nth-child(2) i{animation-delay:.25s}
+    .links .link:nth-child(3) i{animation-delay:.40s}
+    .links .link:nth-child(4) i{animation-delay:.55s}
+
+    .hero-actions .btn:hover i,
+    .links .link:hover i{
+      animation:none;
+      transform:translateY(-5px) scale(1.16);
+      filter:drop-shadow(0 8px 14px rgba(255,255,255,.22));
+    }
+
+    a[href*="linkedin"] i{
+      color:#0A66C2 !important;
+    }
+
+    a[href*="github"] i{
+      color:#ffffff !important;
+    }
+
+    a[href*="instagram"] i{
+      background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent !important;
+    }
+
+    a.btn[href*="linkedin"],
+    a.link[href*="linkedin"]{
+      border-color:rgba(10,102,194,.35);
+      background:rgba(10,102,194,.10);
+    }
+
+    a.btn[href*="github"],
+    a.link[href*="github"]{
+      border-color:rgba(255,255,255,.22);
+      background:rgba(24,23,23,.45);
+    }
+
+    a.btn[href*="instagram"],
+    a.link[href*="instagram"]{
+      border-color:rgba(221,42,123,.35);
+      background:rgba(221,42,123,.10);
+    }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr;}
+      .contact-grid{grid-template-columns:1fr;}
+      .span-6,.span-4,.span-8{grid-column:span 12}
+      .navlinks{display:none}
+      .hamburger{display:inline-flex;align-items:center;justify-content:center}
+      .brand small{display:none}
+    }
+    @media (max-width:420px){
+      .btn .txt{display:none}
+      .btn{padding:10px 11px}
+
+      .hero-actions .btn{
+        width:44px;
+        height:44px;
+        padding:0;
+        border-radius:16px;
+      }
+
+      .hero-actions .btn i{
+        font-size:18px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home" aria-label="Go to home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>
+            <b>Beryl Jacinth.S</b>
+            <small>React • Java • SQL</small>
+          </span>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Training</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn primary" href="assets/Beryl_Jacinth_Resume.pdf" download>
+            <i class="fa-solid fa-file-arrow-down"></i> <span class="txt">Resume</span>
+          </a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-panel" id="mobilePanel" hidden>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Training</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <section class="reveal">
+          <h1>React.js & Java Developer</h1>
+          <p class="subtitle">
+            I build responsive web interfaces using <b>React</b>, <b>HTML/CSS/JavaScript</b>.
+            I also work with <b>Core Java</b>, <b>Spring Boot</b>, <b>SQL</b>, and <b>Python (Basic)</b>.
+          </p>
+
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-mobile-screen"></i> Mobile Responsive</span>
+            <span class="badge"><i class="fa-solid fa-bolt"></i> Clean UI</span>
+            <span class="badge"><i class="fa-solid fa-code-branch"></i> GitHub</span>
+            <span class="badge"><i class="fa-solid fa-database"></i> SQL</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn ghost" href="#projects">
+              <i class="fa-solid fa-layer-group"></i> <span class="txt">Projects</span>
+            </a>
+
+            <a class="btn" href="https://www.dmibus.com" target="_blank" rel="noreferrer">
+              <i class="fa-solid fa-location-dot"></i> <span class="txt">DMI Bus Tracker</span>
+            </a>
+
+            <a class="btn" href="https://www.linkedin.com/in/beryl-jacinth-s-57333430a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-linkedin"></i> <span class="txt">LinkedIn</span>
+            </a>
+
+            <a class="btn" href="https://github.com/beryljacinth118-dev" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-github"></i> <span class="txt">GitHub</span>
+            </a>
+
+            <a class="btn" href="https://www.instagram.com/beryl_jacinth?igsh=NXV1NTZrczVza3Bi" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-instagram"></i> <span class="txt">Instagram</span>
+            </a>
+          </div>
+        </section>
+
+        <aside class="hero-card reveal" aria-label="Quick overview card">
+          <div class="top">
+            <span class="pill">Profile</span>
+            <span class="status"><span class="dot"></span> Active</span>
+          </div>
+
+          <div class="body">
+            <div class="profile">
+              <img class="avatar" src="photo.jpeg" alt="Profile photo" />
+              <div>
+                <div class="pname">Beryl Jacinth.S</div>
+                <span class="prole">React • Java • Spring Boot • SQL</span>
+              </div>
+            </div>
+
+            <div class="metric">
+              <div class="box">
+                <b>React</b>
+                <small>Frontend Focus</small>
+              </div>
+              <div class="box">
+                <b>Java</b>
+                <small>Core Java + OOP</small>
+              </div>
+              <div class="box">
+                <b>Spring Boot</b>
+                <small>Java Backend</small>
+              </div>
+              <div class="box">
+                <b>SQL</b>
+                <small>CRUD + Joins</small>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="grid">
+        <div class="card span-8 reveal">
+          <h2>About</h2>
+          <p class="lead">
+            I’m <b>Beryl Jacinth.S</b> (CSE). I focus on building modern, responsive UI with <b>React</b>,
+            and I also work with <b>Java</b>, <b>Spring Boot</b> and <b>SQL</b>.
+          </p>
+          <div class="chips">
+            <span class="chip">Agasthiswaram, Tamil Nadu</span>
+            <span class="chip">English • Tamil</span>
+            <span class="chip">CSE (Anna University Affiliated)</span>
+          </div>
+        </div>
+
+        <div class="card span-4 reveal">
+          <h3>Focus</h3>
+          <p>
+            Building real projects with clean UI, reusable components, and performance-friendly layouts.
+          </p>
+          <div class="chips">
+            <span class="chip">Responsive UI</span>
+            <span class="chip">Reusable Components</span>
+            <span class="chip">Clean Layout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="reveal">Skills</h2>
+      <p class="lead reveal">Frontend + Java backend fundamentals.</p>
+
+      <div class="grid">
+        <div class="card span-6 reveal">
+          <h3><i class="fa-solid fa-laptop-code" style="color:rgba(137,247,254,.9)"></i> Frontend</h3>
+          <div class="chips">
+            <span class="chip">React JS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">Bootstrap</span>
+          </div>
+        </div>
+
+        <div class="card span-6 reveal">
+          <h3><i class="fa-solid fa-gears" style="color:rgba(102,166,255,.95)"></i> Java</h3>
+          <div class="chips">
+            <span class="chip">Core Java (OOP)</span>
+            <span class="chip">Collections</span>
+            <span class="chip">Exception Handling</span>
+            <span class="chip">Multithreading</span>
+            <span class="chip">Spring Boot</span>
+          </div>
+        </div>
+
+        <div class="card span-6 reveal">
+          <h3><i class="fa-solid fa-database" style="color:rgba(52,211,153,.95)"></i> Database</h3>
+          <div class="chips">
+            <span class="chip">SQL CRUD</span>
+            <span class="chip">Joins</span>
+            <span class="chip">Subqueries</span>
+          </div>
+        </div>
+
+        <div class="card span-6 reveal">
+          <h3><i class="fa-solid fa-toolbox" style="color:rgba(251,191,36,.95)"></i> Tools</h3>
+          <div class="chips">
+            <span class="chip">Git</span>
+            <span class="chip">GitHub</span>
+            <span class="chip">VS Code</span>
+            <span class="chip">Windows</span>
+            <span class="chip">Python (Basic)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="reveal">Projects</h2>
+      <p class="lead reveal">Live project + UI work.</p>
+
+      <div class="grid">
+        <article class="card project span-12 reveal">
+          <div class="row">
+            <h3 style="margin:0">DMI Bus Tracker (College Bus Tracking Website)</h3>
+            <span class="tag"><i class="fa-solid fa-globe"></i> Live</span>
+          </div>
+          <p style="margin:0;color:var(--muted);line-height:1.7">
+            Delivered a mobile-responsive bus tracking website with clean navigation and consistent UI.
+          </p>
+          <div class="chips">
+            <span class="chip">Web App</span>
+            <span class="chip">Responsive UI</span>
+            <span class="chip">Live Website</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://www.dmibus.com" target="_blank" rel="noreferrer">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Website
+            </a>
+            <a class="link" href="assets/Beryl_Jacinth_Resume.pdf" target="_blank" rel="noreferrer">
+              <i class="fa-solid fa-file-lines"></i> Resume (PDF)
+            </a>
+          </div>
+        </article>
+
+        <article class="card project span-12 reveal">
+          <div class="row">
+            <h3 style="margin:0">Cake Website (UI Project)</h3>
+            <span class="tag"><i class="fa-solid fa-store"></i> UI</span>
+          </div>
+          <p style="margin:0;color:var(--muted);line-height:1.7">
+            Built a responsive cake website UI with product listing and clean layout.
+          </p>
+          <div class="chips">
+            <span class="chip">React / JS</span>
+            <span class="chip">UI Components</span>
+            <span class="chip">Responsive</span>
+          </div>
+          <div class="links">
+            <a class="link" href="https://github.com/beryljacinth118-dev" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="reveal">Training & Internships</h2>
+      <p class="lead reveal">Certification first, then internship experience.</p>
+
+      <div class="grid">
+        <div class="card span-6 reveal">
+          <h3>Training / Certification</h3>
+          <div class="timeline">
+            <div class="titem">
+              <b>Full Stack Java Training — Network System</b>
+              <small>120 Hours</small>
+              <p>React frontend basics, Java, SQL, and backend fundamentals.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-6 reveal">
+          <h3>Internships</h3>
+          <div class="timeline">
+            <div class="titem">
+              <b>Software Development Intern (Python) — Trinity Technology</b>
+              <small>3 Months</small>
+              <p>Worked on development tasks and improved programming fundamentals.</p>
+            </div>
+            <div class="titem">
+              <b>Flutter Intern — AK Info Park</b>
+              <small>15 Days</small>
+              <p>Learned basics of mobile UI development and application flow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section">
+    <div class="container">
+      <h2 class="reveal">Resume</h2>
+      <p class="lead reveal">Download or view the PDF.</p>
+
+      <div class="grid">
+        <div class="card span-12 reveal" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+          <div>
+            <h3 style="margin:0 0 6px">Beryl Jacinth.S — Resume</h3>
+            <p style="margin:0;color:var(--muted)"></p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="assets/Beryl_Jacinth_Resume.pdf" download>
+              <i class="fa-solid fa-file-arrow-down"></i> <span class="txt">Download</span>
+            </a>
+            <a class="btn" href="assets/Beryl_Jacinth_Resume.pdf" target="_blank" rel="noreferrer">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="txt">View</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="reveal">Contact</h2>
+      <p class="lead reveal">Email or LinkedIn message.</p>
+
+      <div class="contact-grid">
+        <div class="card reveal">
+          <h3>Links</h3>
+          <div class="links">
+            <a class="link" href="mailto:beryljacinth118@gmail.com">
+              <i class="fa-solid fa-envelope"></i> beryljacinth118@gmail.com
+            </a>
+            <a class="link" href="https://www.linkedin.com/in/beryl-jacinth-s-57333430a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+            <a class="link" href="https://github.com/beryljacinth118-dev" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a class="link" href="https://www.instagram.com/beryl_jacinth?igsh=NXV1NTZrczVza3Bi" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Send a Message</h3>
+          <form id="contactForm">
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" placeholder="Enter your name" required />
+            </div>
+            <div class="field">
+              <label for="email">Your Email</label>
+              <input id="email" name="email" type="email" placeholder="Enter your email" required />
+            </div>
+            <div class="field">
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Your message..." required></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">
+              <i class="fa-solid fa-paper-plane"></i> <span class="txt">Send</span>
+            </button>
+            <p class="hint" id="formHint" style="margin-top:10px"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+      <small>© <span id="year"></span> Beryl Jacinth.S</small>
+      <small>Portfolio</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = !mobilePanel.hasAttribute('hidden');
+      if (isOpen) mobilePanel.setAttribute('hidden', '');
+      else mobilePanel.removeAttribute('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    mobilePanel?.querySelectorAll('a')?.forEach(a => {
+      a.addEventListener('click', () => {
+        mobilePanel.setAttribute('hidden', '');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Active nav link
+    const sections = ['about','skills','projects','experience','resume','contact']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    const navAnchors = document.querySelectorAll('.navlinks a');
+    const setActive = (id) => navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    const ioNav = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: [0.12, 0.2, 0.35] });
+    sections.forEach(sec => ioNav.observe(sec));
+
+    // mailto
+    const form = document.getElementById('contactForm');
+    const hint = document.getElementById('formHint');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+
+      if (!name || !email || !msg) {
+        hint.textContent = "Please fill all fields.";
+        hint.style.color = "rgba(251,113,133,.95)";
+        return;
+      }
+
+      const to = "beryljacinth118@gmail.com";
+      const subject = encodeURIComponent(`Portfolio Contact — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+      hint.textContent = "Opening email app...";
+      hint.style.color = "rgba(52,211,153,.95)";
+    });
+  </script>
+</body>
+</html>
